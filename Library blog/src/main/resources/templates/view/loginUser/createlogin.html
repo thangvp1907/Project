@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Tao tai khoan </title>
+    <link rel="stylesheet" href="/createLogin.css.css"/>
+</head>
+<body>
+<section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-lg-9 col-xl-7">
+                <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                    <div class="card-body p-4 p-md-5">
+                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+                        <form th:action="@{/loginBlog/createlogin}" th:Object="${user}" method="post" >
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        <input type="text" id="account" th:field="*{account}" class="form-control form-control-lg" />
+                                        <p th:if="${#fields.hasErrors('account')}" th:errors="*{account}"></p>
+                                        <label class="form-label" for="account">Account</label>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        <input type="password" id="password" th:field="*{password}"  class="form-control form-control-lg" />
+                                        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+                                        <label class="form-label" for="password">password</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4 d-flex align-items-center">
+                                    <div class="form-outline datepicker w-100">
+                                        <input type="text" th:field="*{name}" class="form-control form-control-lg" id="name"  />
+                                        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                                        <label for="name" class="form-label">Họ và tên</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-4 pb-2">
+                                    <div class="form-outline">
+                                        <input type="email" id="emailAddress" th:field="*{email}" class="form-control form-control-lg" />
+                                        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                                        <label class="form-label" for="emailAddress">Email</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4 pb-2">
+                                    <div class="form-outline">
+                                        <input type="text" id="age" th:field="*{age}" class="form-control form-control-lg" />
+                                        <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></p>
+                                        <label class="form-label" for="age">Tuổi</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4 pb-2">
+                                    <div class="form-outline">
+                                        <input type="hidden" id="blogUser" th:field="*{blogUser}" class="form-control form-control-lg" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-2">
+                                <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" >
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h1>List Blog Sad Boi</h1>
+<table th:object="${blog}">
+  <tr>
+    <td th:field="*{id}"></td>
+  </tr>
+  <tr>
+    <td>Name of Blog</td>
+    <td th:text="*{nameBlog}"></td>
+  </tr>
+  <tr>
+    <td>Ngày Tạo Blog: </td>
+    <td th:text="*{#dates.format(date,'dd/MM/yyyy')}"></td>
+  </tr>
+  <tr>
+    <td>Author</td>
+    <td th:text="*{author}"></td>
+  </tr>
+
+  <tr>
+    <td>content</td>
+    <td th:text="*{content}"></td>
+  </tr>
+  <tr>
+    <td>
+      <button><a th:href="@{/newBlog/list}">BACK</a></button>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Creat a new Blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+<h1>Write a new Blog</h1>
+<form th:href="@{/newBlog/create}" method="post" th:object="${blog}">
+    <table>
+        <tr>
+            <td><input type="hidden" th:field="*{id}"></td>
+        </tr>
+
+        <div>
+        <tr>
+            <td>Author</td>
+            <td><input th:field="*{author}"></td>
+            <p th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></p>
+        </tr>
+        </div>
+
+        <tr>
+            <td>Category</td>
+            <td>
+                <select th:field="*{category.idCategory}">
+                    <option th:each="c: ${category}" th:value="${c.idCategory}"
+                            th:text="${c.nameCategory}"></option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td><input type="hidden" th:field="*{date}" th:value="${#dates.format(blog.date, 'yyyy-MM-dd')}"></td>
+        </tr>
+
+        <tr>
+            <td>Name of Blog</td>
+            <td><input th:field="*{nameBlog}"></td>
+            <p th:if="${#fields.hasErrors('nameBlog')}" th:errors="*{nameBlog}"></p>
+
+        </tr>
+        <tr>
+            <td>Content of Blog</td>
+            <td><textarea th:field="*{content}"></textarea></td>
+            <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></p>
+        </tr>
+        <tr>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" th:data-bs-target="'#'+|Blog${blog.id}|">
+                UPDATE
+            </button>
+            <button><a th:href="@{/newBlog/list}">BACK</a></button>
+        </tr>
+    </table>
+
+    <div class="modal fade" th:id="|Blog${blog.id}|" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Ban co muon tao blog "<span th:text="${blog.nameBlog}"></span> "nay khong ha? </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form th:action="@{/newBlog/create}" method="post">
+                        <button type="submit" class="btn btn-primary">create</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</html>

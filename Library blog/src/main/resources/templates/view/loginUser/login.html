@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/login.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+</head>
+<body>
+<header>
+    <h2 class="logo">Logo</h2>
+    <nav class="navigation">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Serviece</a>
+        <a href="#">Contact</a>
+        <button class="btn_login">Login</button>
+    </nav>
+</header>
+<div class="warpper">
+    <div class="from_box_login ">
+        <h2>Login</h2>
+        <h2 th:if="${error != null}" th:text="${error}" style="color: red"></h2>
+        <form th:action="@{/loginBlog/login}" method="post" >
+            <div class="input_box">
+                <span class="icon">
+                    <i class="fa-solid fa-envelope fa-sm"></i>
+                </span>
+                <input type="text" name="account" required>
+                <label>Username</label>
+            </div>
+            <div class="input_box">
+                <span class="icon">
+                    <i class="fa-solid fa-lock fa-sm"></i>
+                </span>
+                <input type="password" name="password" required>
+                <label>Password</label>
+            </div>
+            <button class="enter">Đăng nhập</button>
+        </form>
+        <form th:action="@{/loginBlog/createlogin}" method="get">
+            <button class="enter" type="submit">Dang ky</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
